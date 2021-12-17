@@ -1,6 +1,6 @@
 from django.db import models
 from helpers.models import TrackingModel
-from django.contrib.auth.models import (AbstractBaseUser, PermissionsMixin, BaseUserManager,UserManager)
+from django.contrib.auth.models import (AbstractBaseUser, PermissionsMixin,UserManager)
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -80,6 +80,9 @@ class User(AbstractBaseUser, PermissionsMixin, TrackingModel):
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
     objects = MyManager()
+    '''
+    create an email verification field
+    '''
     email_verified = models.BooleanField(
         _('email_verified'),
         default=False,

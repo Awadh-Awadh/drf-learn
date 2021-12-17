@@ -9,6 +9,7 @@ django-admin = "*"
 djangorestframework = "*"
 django-filter = "*"
 psycopg2 = "*"
+coverage = "*"
 
 [dev-packages]
 
