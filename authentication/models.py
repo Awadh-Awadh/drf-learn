@@ -4,6 +4,9 @@ from django.contrib.auth.models import (AbstractBaseUser, PermissionsMixin,UserM
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+import jwt
+from django.conf import Settings, settings
+from datetime import datetime, timedelta
 
 
 class MyManager(UserManager):
@@ -97,4 +100,12 @@ class User(AbstractBaseUser, PermissionsMixin, TrackingModel):
     
     @property
     def token(self):
+
+      token = jwt.encode({
+        "username": self.username,
+        "password": self.password,
+        "exp": datetime.datetime.now(tz=timezone.utc) + datetime.timedelta(seconds=30)
+      }, settings.SECRET_KEY,
+         algorithm="HS256"
+      )
       return ''
