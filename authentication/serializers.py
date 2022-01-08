@@ -1,16 +1,16 @@
 from rest_framework import serializers
-from authentication.models import User
+from authentication.models import CustomUser
 
 class RegisterSerializer(serializers.ModelSerializer):
 
   password = serializers.CharField(max_length=128, min_length=6, write_only=True)
 
   class Meta:
-    model = User
+    model = CustomUser
     fields = ('first_name', 'last_name', 'username', 'email', 'password')
 
-    def create(self, validated_data):
-      return User.objects.create_user(**validated_data)
+  def create(self, validated_data):
+     return CustomUser.objects.create_user(**validated_data)
 
 
 class LoginSerializer(serializers.ModelSerializer):
@@ -18,6 +18,6 @@ class LoginSerializer(serializers.ModelSerializer):
   password = serializers.CharField(max_length=128, min_length=6, write_only=True)
 
   class Meta:
-    model = User
+    model = CustomUser
     fields = ('email', 'password','token')
-    read_only_fields = ('token',)
+    read_only_fields = ['token',]

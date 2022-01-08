@@ -11,7 +11,7 @@ class TrackingModel(models.Model):
 
   class Meta:
     '''
-    Abstract=True means this is just a reference class and not to be used to create object
+    Abstract=True means this is just a reference class and not to be used to create objects
     '''
     abstract=True
     ordering = '-created_at'

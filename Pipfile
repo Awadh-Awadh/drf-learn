@@ -10,6 +10,7 @@ djangorestframework = "*"
 django-filter = "*"
 psycopg2 = "*"
 coverage = "*"
+pyjwt = "*"
 
 [dev-packages]
 
