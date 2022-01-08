@@ -3,7 +3,7 @@ from django.shortcuts import render
 from rest_framework.generics import GenericAPIView
 from authentication.serializers import RegisterSerializer, LoginSerializer
 from rest_framework.response import Response
-from rest_framework import serializers, status
+from rest_framework import serializers, status, permissions
 from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
 
@@ -11,6 +11,13 @@ from django.contrib.auth import get_user_model
 '''
 GenericApiView helps in handling all the http requests
 '''
+class GetCurrentUser(GenericAPIView):
+    permissions_classes  = (permissions.IsAuthenticated,)
+  
+    def get(self, request):
+        user = request.user
+        serializer = RegisterSerializer(user)
+        return Response({"user": serializer.data})
 
 
 class RegisterApiView(GenericAPIView):

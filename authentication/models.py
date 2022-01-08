@@ -109,5 +109,4 @@ class CustomUser(AbstractBaseUser, PermissionsMixin, TrackingModel):
       algorithm="HS256"
       )
 
-      print(token)
       return token
