@@ -41,4 +41,7 @@ class JwtAuthentication(BaseAuthentication):
       except CustomUser.DoesNotExist:
           raise exceptions.AuthenticationFailed("User does not exist")
 
+    '''
+    Register default authentication in the settings
     
+    '''

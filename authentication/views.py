@@ -3,7 +3,7 @@ from django.shortcuts import render
 from rest_framework.generics import GenericAPIView
 from authentication.serializers import RegisterSerializer, LoginSerializer
 from rest_framework.response import Response
-from rest_framework import serializers, status, permissions
+from rest_framework import authentication, serializers, status, permissions
 from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
 
@@ -21,6 +21,7 @@ class GetCurrentUser(GenericAPIView):
 
 
 class RegisterApiView(GenericAPIView):
+  authentication_classes = []
 
   serializer_class = RegisterSerializer
 
@@ -33,7 +34,12 @@ class RegisterApiView(GenericAPIView):
 
 
 class LoginApiView(GenericAPIView):
-
+    '''
+    The default authentication in settings will always try to protect all the views and there some views 
+    which we may not want django_restframework to first try to authenticate a user before it can give access to the 
+    view itself. For those classes we may want to override that action by setting the authentication_classes as a list
+    '''
+    authentication_classes = []
     serializer_class = LoginSerializer
 
     def post(self, request):

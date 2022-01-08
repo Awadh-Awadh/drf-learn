@@ -14,4 +14,4 @@ class TrackingModel(models.Model):
     Abstract=True means this is just a reference class and not to be used to create objects
     '''
     abstract=True
-    ordering = '-created_at'
+    ordering = ['-created_at']
