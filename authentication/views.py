@@ -5,6 +5,7 @@ from authentication.serializers import RegisterSerializer, LoginSerializer
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from django.contrib.auth import authenticate
+from django.contrib.auth import get_user_model
 
 
 '''
@@ -29,12 +30,10 @@ class LoginApiView(GenericAPIView):
     serializer_class = LoginSerializer
 
     def post(self, request):
-        email=request.data.get('email')
-        password=request.data.get('password')
+        email=request.data.get('email', None)
+        password=request.data.get('password', None)
         user = authenticate(username=email, password=password)
-        print(user)
-        print(email)
-        print(password)
+        print(user)        
         if user:
           print("awadh")
           """
