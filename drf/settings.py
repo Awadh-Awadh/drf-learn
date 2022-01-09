@@ -80,7 +80,9 @@ WSGI_APPLICATION = 'drf.wsgi.application'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'authentication.jwt.JwtAuthentication',
-    ]
+    ],
+    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE':12
 }
 
 # Database

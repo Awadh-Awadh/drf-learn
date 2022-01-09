@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import serializers
+from rest_framework import pagination, serializers
 from rest_framework import permissions,filters
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -7,11 +7,13 @@ from rest_framework.generics import CreateAPIView, ListAPIView, ListCreateAPIVie
 from todos.models import Todo
 from todos.serializers import TodoSerializer
 from django_filters.rest_framework import DjangoFilterBackend
+from todos.pagination import CustomPageNumberPagination
 
 
 class TodosApi(ListCreateAPIView):
     serializer_class = TodoSerializer
     permissions = (IsAuthenticated,)
+    pagination_class = CustomPageNumberPagination
 
     '''
     django filters allow ordering and searching easier
