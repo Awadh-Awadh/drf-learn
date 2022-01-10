@@ -12,6 +12,9 @@ psycopg2 = "*"
 coverage = "*"
 pyjwt = "*"
 drf-yasg = "*"
+whitenoise = "*"
+django-heroku = "*"
+gunicorn = "*"
 
 [dev-packages]
 
