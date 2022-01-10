@@ -11,6 +11,7 @@ django-filter = "*"
 psycopg2 = "*"
 coverage = "*"
 pyjwt = "*"
+drf-yasg = "*"
 
 [dev-packages]
 
